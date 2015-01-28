@@ -6,7 +6,7 @@ This demo is written for a tutorial to show how to send a message using [PubNub 
 
 ## Live Demo
 
-[Try this on multiple browsers including mobile](http://pubnub.github.io/oi-web-notification)
+[Try this on multiple desktop browsers](http://pubnub.github.io/oi-web-notification)
 
 ## Tutorial
 
