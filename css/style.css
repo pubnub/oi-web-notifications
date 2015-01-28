@@ -1,0 +1,111 @@
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+html {
+    height: 100%;
+}
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Segoe UI Web Light", "Segoe UI Light", "Segoe UI Web Regular", "Segoe UI", Helvetica, Arial, sans-serif; 
+    background: #00BCD4;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.4;
+}
+h1, h2, h3 {
+    margin: 0;
+    text-rendering: optimizeLegibility;
+}
+header.navbar {
+    min-height: 64px;
+    margin: 0;
+    padding: 0 15px;
+    background-color: #80DEEA;
+    color: #333;
+}
+h1 {
+    font-size: 1em;
+    line-height: 64px;
+    font-weight: normal;
+}
+h2 {
+    font-size: 6.5em;
+    line-height: 1.6;
+}
+header.greetings {
+    text-align: center;
+    margin-bottom: 2em;
+    margin: 0 1.5em;
+}
+input[type=text], button {
+    display: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 1.2em;
+    padding: .7em 1em;
+    margin-bottom: 2em;
+    display: block;
+    display: inline-block;
+    border: 0;
+    width: 100%;
+    text-transform: uppercase;
+}
+.intro {
+    display: none;
+    margin: 0 0 2em 0;
+}
+ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: inline-block;
+}
+li {
+    width: 100%;
+    margin: 0;
+    padding: 0 1em;
+    text-align: center;
+    line-height: 86px;
+    text-transform: uppercase;
+    background: #FFC107;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+li:nth-child(7n+1) {
+    background: #E91E63;
+}
+li:nth-child(7n+2) {
+    background: #3F51B5;
+}
+li:nth-child(7n+3) {
+    background: #009688;
+}
+li:nth-child(7n+4) {
+    background: #FFC107;
+}
+li:nth-child(7n+5) {
+    background: #FF5722;
+}
+li:nth-child(7n+6) {
+    background: #8BC34A;
+}
+li:nth-child(7n) {
+    background: #AB47BC;
+}
+@media only screen and (min-width: 600px) {
+    body {
+        font-size: 21px;
+    }
+    li {
+        display: inline-block;
+        width: 50%;
+    }
+    input[type=text] {
+        font-size: 1.2em;
+    }
+}
+
