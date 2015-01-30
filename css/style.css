@@ -4,6 +4,7 @@ html {
     height: 100%;
 }
 body {
+    height: 100%;
     padding: 0;
     margin: 0;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Segoe UI Web Light", "Segoe UI Light", "Segoe UI Web Regular", "Segoe UI", Helvetica, Arial, sans-serif; 
@@ -11,6 +12,11 @@ body {
     color: #fff;
     font-size: 16px;
     line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+}
+.main {
+    flex: 1;
 }
 h1, h2, h3 {
     margin: 0;
@@ -23,19 +29,36 @@ header.navbar {
     background-color: #80DEEA;
     color: #333;
 }
-h1 {
+header.navbar > h1 {
+    width: calc(100% - 1em - 21px);
     font-size: 1em;
     line-height: 64px;
     font-weight: normal;
+    display: inline-block;
 }
-h2 {
-    font-size: 6.5em;
-    line-height: 1.6;
+header.navbar a {
+    font-size: 1.3em;
+    position: relative;
+    top: 3px;
+    color: #333;
+    text-decoration: none;
 }
-header.greetings {
+header.navbar > div {
+    font-size: 1.3em;
+    position: relative;
+    top: 3px;
+}
+header.navbar a {
+    width: 27px;
+}
+.greetings {
     text-align: center;
     margin-bottom: 2em;
     margin: 0 1.5em;
+}
+.greetings h2 {
+    font-size: 6.5em;
+    line-height: 1.6;
 }
 input[type=text], button {
     display: none;
@@ -96,6 +119,18 @@ li:nth-child(7n+6) {
 li:nth-child(7n) {
     background: #AB47BC;
 }
+footer {
+    min-height: 64px;
+    line-height: 64px;
+    margin-top: 2em;
+    text-align: center;
+}
+footer span {
+    font-size: 1.3em;
+    position: relative;
+    top: 4px;
+}
+
 @media only screen and (min-width: 600px) {
     body {
         font-size: 21px;
@@ -108,4 +143,49 @@ li:nth-child(7n) {
         font-size: 1.2em;
     }
 }
+
+@font-face {
+    font-family: 'icomoon';
+    src:url('../fonts/icomoon.eot?v2o1c0');
+    src:url('../fonts/icomoon.eot?#iefixv2o1c0') format('embedded-opentype'),
+        url('../fonts/icomoon.woff?v2o1c0') format('woff'),
+        url('../fonts/icomoon.ttf?v2o1c0') format('truetype'),
+        url('../fonts/icomoon.svg?v2o1c0#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon';
+    speak: none;
+}
+
+li.icon-oi:after {
+    content: "\e96b";
+    padding-left: 15px;
+}
+
+.icon-github:before {
+    content: "\eab1";
+}
+.icon-chrome:before {
+    content: "\eae5";
+    color: #76F95F;
+}
+.icon-firefox:before {
+    content: "\eae6";
+    color: #FFAF1E;
+}
+.icon-IE:before {
+    content: "\eae7";
+}
+.icon-opera:before {
+    content: "\eae8";
+    color: #CC0F16;
+}
+.icon-safari:before {
+    content: "\eae9";
+    color: #C7EDFD;
+}
+
 

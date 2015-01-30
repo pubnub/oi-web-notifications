@@ -96,6 +96,11 @@
         list.addEventListener('click', function(e){
             if(!e.target.id) return;
 
+            e.target.className = 'icon-oi';
+            window.setTimeout(function(){
+                e.target.className = '';
+            }, 3000);
+
             pubnub.publish({
                 channel : channel, 
                 message : {from: username, to: e.target.id}, 
@@ -115,7 +120,6 @@
     
 
     // Web Notification feature detection
-       if(window.webkitNotifications){alert('webkit');}
     if (!window.Notification) { 
         alert('Your browser does not support Web Notifications API.');
         return;  
