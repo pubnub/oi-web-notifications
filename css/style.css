@@ -160,9 +160,10 @@ footer span {
     speak: none;
 }
 
+
 li.icon-oi:after {
     content: "\e96b";
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
 .icon-github:before {
@@ -188,4 +189,52 @@ li.icon-oi:after {
     color: #C7EDFD;
 }
 
+li.icon-oi:after {
+    -webkit-animation: anim 3s;
+    animation: anim 3s;
+}
+@-webkit-keyframes anim {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.7;       
+    }
+    30% {
+        transform: scale(1);
+        opacity: 1; 
+    }   
+    60% {
+        transform: scale(0.8);
+        opacity: 0.7;   
+    } 
+    90% {
+        transform: scale(1);
+        opacity: 1; 
+    }   
+    100% {
+        transform: scale(0);
+        opacity: 0;   
+    }           
+}
+@keyframes anim {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.7;       
+    }
+    30% {
+        transform: scale(1);
+        opacity: 1; 
+    }   
+    60% {
+        transform: scale(0.8);
+        opacity: 0.7;   
+    } 
+    90% {
+        transform: scale(1);
+        opacity: 1; 
+    }   
+    100% {
+        transform: scale(0);
+        opacity: 0;   
+    }           
+}
 
