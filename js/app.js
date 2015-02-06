@@ -70,6 +70,9 @@
                             foundSelf = true;
                             n = u + ' (You)';
                         }
+                        if(u.length > 35) {
+                            n = 'PubNub Admin';
+                        }
                         str += '<li id="' + u + '">' + n + '</li>';
                     });
                     list.innerHTML = str;
@@ -126,8 +129,8 @@
     } 
 
     // Web Notification permission
-    Notification.requestPermission(function(status) {
-        if(status !== 'granted') {
+    Notification.requestPermission(function() {
+        if(Notification.permission !== 'granted') {
             alert('Please allow Web Notifications feature to try this demo.');
             return;
         }
