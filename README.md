@@ -1,3 +1,5 @@
+![Oi](https://raw.githubusercontent.com/pubnub/oi-web-notifications/gh-pages/images/screenshot.png)
+
 # Web Notifications Demo
 
 A simple realtime web notification demo
