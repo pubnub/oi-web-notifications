@@ -12,6 +12,7 @@
 
     var channel = 'oi-demo';
     var username = '';
+    var pubnub = null;
     //var users = [];
     var input = document.querySelector('[type=text]');
     var intro = document.querySelector('.intro');
@@ -41,7 +42,7 @@
 
     function showNotification(data) {
         var ms = 30000; // close notification after 30sec
-        var notification = new Notification(data.message || 'Oi!', {
+        var notification = new Notification('Hello', {
                 body: 'From: ' + data.from,
                 tag: channel,
                 icon: 'images/oi.png'
@@ -51,50 +52,36 @@
         };
     }
 
-    function connect(uuid) {
-        var pubnub = PUBNUB.init({
-            subscribe_key: 'sub-c-f762fb78-2724-11e4-a4df-02ee2ddab7fe',
-            publish_key:   'pub-c-156a6d5f-22bd-4a13-848d-b5b4d4b36695',
-            uuid: uuid
+    async function connect(uuid) {
+        pubnub = new PubNub({
+            subscribeKey: 'demo',
+            publishKey:   'demo',
+            userId: uuid
         });
 
-        var updateList = function() {
-            pubnub.here_now({
-                channel: channel,
-                callback: function(m){
-                    var foundSelf = false;
-                    var str = '';
-                    [].forEach.call(m.uuids, function(u) {
-                        var n = u;
-                        if(u === uuid) {
-                            foundSelf = true;
-                            n = u + ' (You)';
-                        }
-                        if(u.length > 35) {
-                            n = 'PubNub Admin';
-                        }
-                        str += '<li id="' + u + '">' + n + '</li>';
-                    });
-                    list.innerHTML = str;
-
-                    if (!foundSelf) { // If the results doesn't include self, try again.
-                        updateList();
-                    }
-                }
-            });
-        };
-
-        pubnub.subscribe({
-            channel: channel,
-            callback: function(m) { 
-                console.log(m);
-                if(m.to === username) {
+        await pubnub.addListener({
+            status: async statusEvent => {
+            },
+            message: payload =>
+            {
+                if(payload.message.to === username) {
                     // Show a notification
-                    showNotification(m);
+                    showNotification(payload.message);
                 }
             },
-            presence: updateList
+            presence: payload =>
+            {
+                updateList(payload);
+            }
+        })
+        
+        await pubnub.subscribe({
+            channels: [channel],
+            withPresence: true
         });
+
+        var users = await hereNow();
+        updateList(users);
 
         list.addEventListener('click', function(e){
             if(!e.target.id) return;
@@ -106,9 +93,39 @@
 
             pubnub.publish({
                 channel : channel, 
-                message : {from: username, to: e.target.id}, 
+                message : {"from": username, "to": e.target.id}, 
             });
         }, false);
+    }
+
+    async function hereNow() {
+        var users = await pubnub.hereNow({
+            channels: [channel]
+        });
+        return users
+    };
+
+    function updateList(m) {
+        var foundSelf = false;
+        var str = '';
+        for (var i = 0; i < m.channels[channel].occupants.length; i++)
+        {
+            var u = m.channels[channel].occupants[i];
+            var n = u.uuid;
+            if(u.uuid === username) {
+                foundSelf = true;
+                n = u.uuid + ' (You)';
+            }
+            if(u.uuid.length > 35) {
+                n = 'PubNub Admin';
+            }
+            str += '<li id="' + u.uuid + '">' + u.uuid + '</li>';
+        }
+        list.innerHTML = str;
+
+        if (!foundSelf) { // If the results doesn't include self, try again.
+            updateList();
+        }
     }
 
     function getUserInfo() {

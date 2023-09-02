@@ -137,6 +137,7 @@ footer span {
     }
     li {
         display: inline-block;
+        font-family: 'icomoon';
         width: 50%;
     }
     input[type=text] {
